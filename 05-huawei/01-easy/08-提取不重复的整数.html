@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提取不重复的整数</title>
+</head>
+<body>
+    <pre>
+        输入一个 int 型整数，按照从右向左的阅读顺序，返回一个不含重复数字的新的整数。
+保证输入的整数最后一位不是 0 。
+
+数据范围： 1 \le n \le 10^{8} \1≤n≤10 
+8
+  
+输入描述：
+输入一个int型整数
+
+输出描述：
+按照从右向左的阅读顺序，返回一个不含重复数字的新的整数
+
+示例1
+输入：
+9876673
+输出：
+37689
+    </pre>
+    <script>
+        // 自测结果
+        function getWord(Num){
+            const arr = String(Num).split('')
+            const set = new Set()
+            arr.reverse()
+            arr.map(res =>{
+                set.add(res)
+            })
+            return Number(Array.from(set).join(''))
+        }
+        console.log(getWord(9876673))
+
+        // 使用华为机考可识别方法
+        // const num = readline()
+        // function getWord(Num){
+        //     const arr = String(Num).split('')
+        //     const set = new Set()
+        //     arr.reverse()
+        //     arr.map(res =>{
+        //         set.add(res)
+        //     })
+        //     return Number(Array.from(set).join(''))
+        // }
+        // console.log(getWord(num))
+
+
+        // ===========网络参考答案========== 
+        // console.log([... new Set(readline().split('').reverse())].join(''))
+    </script>
+</body>
+</html>

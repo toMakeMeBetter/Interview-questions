@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物单</title>
+</head>
+<body>
+  <pre>
+    描述
+王强决定把年终奖用于购物，他把想买的物品分为两类：主件与附件，附件是从属于某个主件的，下表就是一些主件与附件的例子：
+主件	附件
+电脑	打印机，扫描仪
+书柜	图书
+书桌	台灯，文具
+工作椅	无
+如果要买归类为附件的物品，必须先买该附件所属的主件，且每件物品只能购买一次。
+每个主件可以有 0 个、 1 个或 2 个附件。附件不再有从属于自己的附件。
+王强查到了每件物品的价格（都是 10 元的整数倍），而他只有 N 元的预算。除此之外，他给每件物品规定了一个重要度，用整数 1 ~ 5 表示。他希望在花费不超过 N 元的前提下，使自己的满意度达到最大。
+满意度是指所购买的每件物品的价格与重要度的乘积的总和，假设设第ii件物品的价格为v[i]v[i]，重要度为w[i]w[i]，共选中了kk件物品，编号依次为j_1,j_2,...,j_kj 
+1
+​
+ ,j 
+2
+​
+ ,...,j 
+k
+​
+ ，则满意度为：v[j_1]*w[j_1]+v[j_2]*w[j_2]+ … +v[j_k]*w[j_k]v[j 
+1
+​
+ ]∗w[j 
+1
+​
+ ]+v[j 
+2
+​
+ ]∗w[j 
+2
+​
+ ]+…+v[j 
+k
+​
+ ]∗w[j 
+k
+​
+ ]。（其中 * 为乘号）
+请你帮助王强计算可获得的最大的满意度。
+
+
+输入描述：
+输入的第 1 行，为两个正整数N，m，用一个空格隔开：
+
+（其中 N （ N<32000 ）表示总钱数， m （m <60 ）为可购买的物品的个数。）
+
+
+从第 2 行到第 m+1 行，第 j 行给出了编号为 j-1 的物品的基本数据，每行有 3 个非负整数 v p q
+
+
+（其中 v 表示该物品的价格（ v<10000 ）， p 表示该物品的重要度（ 1 ~ 5 ）， q 表示该物品是主件还是附件。如果 q=0 ，表示该物品为主件，如果 q>0 ，表示该物品为附件， q 是所属主件的编号）
+ 
+
+
+
+输出描述：
+ 输出一个正整数，为张强可以获得的最大的满意度。
+示例1
+输入：
+1000 5
+800 2 0
+400 5 1
+300 5 1
+400 3 0
+500 2 0
+输出：
+2200
+示例2
+输入：
+50 5
+20 3 5
+20 3 5
+10 3 0
+10 2 0
+10 1 0
+输出：
+130
+说明：
+由第1行可知总钱数N为50以及希望购买的物品个数m为5；
+第2和第3行的q为5，说明它们都是编号为5的物品的附件；
+第4~6行的q都为0，说明它们都是主件，它们的编号依次为3~5；
+所以物品的价格与重要度乘积的总和的最大值为10*1+20*3+20*3=130     
+  </pre>
+  <script>
+    // 先根据q进行分类，存放在二维数组中
+    const N = 1000
+    const arr = [{v:800,p:2,q:0},{v:400,p:5,q:1},{v:300,p:5,q:1},{v:400,p:3,q:0},{v:500,p:2,q:0},{v:500,p:2,q:0},{v:300,p:2,q:4},{v:200,p:3,q:0},{v:400,p:3,q:0},{v:100,p:3,q:0},{v:100,p:3,q:0},{v:100,p:3,q:0}]
+    const newAr = []
+    arr.map((res,index) =>{
+      if(res.q === 0){
+        newAr[index] = [res]
+      }else{
+        newAr[res.q - 1].push(res)
+      }
+    })
+    const newArr = []
+    newAr.map(res =>{
+      newArr.push(res)
+    })
+    // console.log(newArr)
+    const result = []
+      // console.log(newArr)
+    for(let i = 0; i < newArr.length ; i++){
+      result[i] = {price:0,value:0}
+      for(let j = 0; j <newArr[i].length ; j++ ){
+        // console.log(newArr[i][j])
+        result[i].price += newArr[i][j].v
+        result[i].value += newArr[i][j].v * newArr[i][j].p
+      }
+    }
+    for(let i = 0; i < result.length; i++){
+      if(result[i].price > N){
+        result.splice(i,1)
+      }
+    }
+    console.log(result)
+  </script>
+</body>
+</html>

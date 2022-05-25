@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>进制转换</title>
+</head>
+<body>
+  <pre>
+    描述
+写出一个程序，接受一个十六进制的数，输出该数值的十进制表示。
+
+数据范围：保证结果在 1 \le n \le 2^{31}-1 \1≤n≤2 
+
+输入描述：
+输入一个十六进制的数值字符串。
+
+输出描述：
+输出该数值的十进制字符串。不同组的测试用例用\n隔开。
+
+示例1
+输入：
+0xAA
+复制
+输出：
+170
+  </pre>
+  <script>
+    // 自测结果 首先捋一捋进制转换
+    // A 10 B 11 C 12 D 13 E 14 F 15
+    // 0xAA就是10*16^0 + 10*16^1 = 170
+    function getWord(str){
+      const transfer = {A:10,B:11,C:12,D:13,E:14,F:15}
+      const resArr = str.split('').slice(2)
+      let result = 0
+      resArr.map((res,index) =>{
+        // console.log(res,'res')
+        // console.log(index,'index')
+        // console.log(transfer[res])
+        // console.log(Math.pow(16,index))
+        if(transfer[res]){
+         result += transfer[res]*Math.pow(16,(resArr.length - 1 - index))
+        }else{
+          result += res*Math.pow(16,(resArr.length - 1 - index))
+        }
+        // console.log(result)
+      })
+      return result
+    }
+    console.log(getWord('0x2C'))
+
+    // 使用华为机考可识别方法
+    // const str = readline()
+    // function getWord(str){
+    //   const transfer = {A:10,B:11,C:12,D:13,E:14,F:15}
+    //   const resArr = str.split('').slice(2)
+    //   let result = 0
+    //   resArr.map((res,index) =>{
+    //     if(transfer[res]){
+    //      result += transfer[res]*Math.pow(16,(resArr.length - 1 - index))
+    //     }else{
+    //       result += res*Math.pow(16,(resArr.length - 1 - index))
+    //     }
+    //   })
+    //   return result
+    // }
+    // console.log(getWord(str))
+
+    /* 
+    * 分析：和网上答案比较半斤对八两，就按照我这个做了
+    */
+
+     // ===========网络参考答案========== 
+    //  let src
+    //   let valueMap = {
+    //       '0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'A':10,'a':10,
+    //       'B':11,'b':11,'C':12,'c':12,'D':13,'d':13,'E':14,'e':14,'F':15,'f':15
+    //   }
+    //   while(src=readline()) {
+    //       let srcArray = src.substring(2).split('')
+    //       let x = 1
+    //       let result = 0
+    //       for(let i=srcArray.length-1;i>=0;i--) {            
+    //           result += x*valueMap[srcArray[i]]
+    //           x*=16
+    //       }
+    //       print(result)
+    //   }
+  </script>
+</body>
+</html>

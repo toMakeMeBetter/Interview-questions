@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>质数因子</title>
+</head>
+<body>
+  <pre>
+    描述
+功能:输入一个正整数，按照从小到大的顺序输出它的所有质因子（重复的也要列举）（如180的质因子为2 2 3 3 5 ）
+
+
+数据范围： 1 \le n \le 2 \times 10^{9} + 14 \1≤n≤2×10 
+9
+ +14 
+输入描述：
+输入一个整数
+
+输出描述：
+按照从小到大的顺序输出它的所有质数的因子，以空格隔开。
+
+示例1
+输入：
+180
+复制
+输出：
+2 2 3 3 5
+<script>
+  // 自测结果
+  function getValue(num){
+    const arr = []
+    for(let i = 2 ; i * i <= num ; i ++ ){
+      while(num % i === 0){
+        arr.push(i)
+        num = num / i
+      }
+    }
+    if(num > 1) arr.push(num)
+    return arr.join(' ')
+  }
+  console.log(getValue(1234))
+
+   // 使用华为机考可识别方法
+  //  const num = readline()
+  //  function getValue(num){
+  //   const arr = []
+  //   for(let i = 2 ; i * i <= num ; i ++ ){
+  //     while(num % i === 0){
+  //       arr.push(i)
+  //       num = num / i
+  //     }
+  //   }
+  //   if(num > 1) arr.push(num)
+  //   return arr.join(' ')
+  // }
+  // console.log(getValue(num))
+
+   /* 
+    * 分析：我在写这个的时候参考的网上的方法，因为自己走来只想着使用递归，导致越写越麻烦，最后参考了下面的代码
+    * 注意这里的while循环，我们之前直接写的时候直接用的if，这样就会导致后面有还能被2整除的内容去掉了。
+    * 同时需要注意这里使用的是i*i，这样我们就可以减少一半的数据
+    */
+
+// ===========网络参考答案========== 
+  // function primeFactor(num){
+  //     const result = [];
+  //     let num1 = num;
+  //     for(let i = 2; i*i <= num; i++){
+  //         while(num1%i === 0){
+  //             result.push(i);
+  //             num1 /= i;
+  //         }
+  //     }
+  //     if(num1 > 1) result.push(num1)
+  //     return result.join(' ');
+  // }
+  
+  // const num = parseInt(readline());
+  // console.log(primeFactor(num)+' ');
+</script>
+  </pre>
+</body>
+</html>

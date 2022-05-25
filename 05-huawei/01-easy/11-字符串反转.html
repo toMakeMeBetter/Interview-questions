@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串反转</title>
+</head>
+<body>
+    <pre>
+        描述
+接受一个只包含小写字母的字符串，然后输出该字符串反转后的字符串。（字符串长度不超过1000）
+
+输入描述：
+输入一行，为一个只包含小写字母的字符串。
+
+输出描述：
+输出该字符串反转后的字符串。
+
+示例1
+输入：
+abcd
+输出：
+dcba
+    </pre>
+    <script>
+        // 自测结果
+        function getWord(str){
+            return str.split('').reverse().join('')
+        }
+        console.log(getWord('abcd'))
+
+        // 使用华为机考可识别方法
+        // const str = readline()
+        // function getWord(str){
+        //     return str.split('').reverse().join('')
+        // }
+        // console.log(getWord(str))
+        // 或者
+        // console.log(readline().split('').reverse().join(''))
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串分隔</title>
+</head>
+<body>
+  <pre>
+    描述
+•输入一个字符串，请按长度为8拆分每个输入字符串并进行输出；
+
+•长度不是8整数倍的字符串请在后面补数字0，空字符串不处理。
+输入描述：
+连续输入字符串(每个字符串长度小于等于100)
+
+输出描述：
+依次输出所有分割后的长度为8的新字符串
+
+示例1
+输入：
+abc
+复制
+输出：
+abc00000
+  </pre>
+  <script>
+    // 自测结果
+    function getWord(str){
+      const arr = str.split('')
+      if(arr.length % 8 === 0){
+        return str
+      }else{
+        const len = arr.length % 8
+        for(let i = 0; i < 8 - len; i++){
+          arr.push(0)
+        }
+        return arr.join('')
+      }
+    }
+    const result = getWord('xvnbbhcfkjxovjwhvwdzhi')
+    const len = result.length / 8
+    console.log(result,result.length,'sss')
+    for(let i = 0;i < len; i++){
+      console.log(result.slice(i*8,(i+1)*8),'1111')
+    }
+
+    // 使用华为机考可识别方法
+    // const str = readline()
+    // function getWord(str){
+    //   const arr = str.split('')
+    //   if(arr.length % 8 === 0){
+    //     return str
+    //   }else{
+    //     const len = arr.length % 8
+    //     for(let i = 0; i < 8 - len; i++){
+    //       arr.push(0)
+    //     }
+    //     return arr.join('')
+    //   }
+    // }
+    // const result = getWord(str)
+    // const len = result.length / 8
+    // for(let i = 0;i < len; i++){
+    //   console.log(result.slice(i*8,(i+1)*8))
+    // }
+
+    /* 
+    * 分析：前面做法中，我一直想着正向给字符串添加内容，因此又先转成数组，又转回来了，较网络答案，我们多此一举，没有直接拼接字符串
+    */
+
+
+    // ===========网络参考答案========== 
+    // while((line=readline())){
+    //   var str = '0000000'
+    //   if(line.length%8!=0){
+    //     line = line+str.slice(0,8-line.length%8)
+    //   }
+    //   for(var i=0 ;i<line.length;i++){
+    //     print(line.substr(i,8));
+    //     i+=7;
+    //   }
+    // }
+  </script>
+</body>
+</html>

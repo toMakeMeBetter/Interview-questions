@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>合并二维有序数组成一维有序数组</title>
+</head>
+<body>
+    <script>
+      var arr = [[1,2,3,4],[2,3,4,5],[6,7,8],10,12]
+      function mergeSort(arr){
+        var Arr = []
+       for(var i = 0;i < arr.length; i++){
+        if(arr[i].length){
+          for(var j = 0;j < arr[i].length;j ++){
+            Arr.push(arr[i][j])
+          }
+        }else{
+          Arr.push(arr[i])
+        }
+       }
+       return Arr
+      }
+      const finallyArr = mergeSort(arr)
+      console.log(finallyArr.sort((a,b) =>{return a -b}))
+    </script>
+</body>
+</html>

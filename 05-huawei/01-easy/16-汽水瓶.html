@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汽水瓶</title>
+</head>
+<body>
+    <pre>
+        描述
+某商店规定：三个空汽水瓶可以换一瓶汽水，允许向老板借空汽水瓶（但是必须要归还）。
+小张手上有n个空汽水瓶，她想知道自己最多可以喝到多少瓶汽水。
+数据范围：输入的正整数满足 1 \le n \le 100 \1≤n≤100 
+
+注意：本题存在多组输入。输入的 0 表示输入结束，并不用输出结果。
+输入描述：
+输入文件最多包含 10 组测试数据，每个数据占一行，仅包含一个正整数 n（ 1<=n<=100 ），表示小张手上的空汽水瓶数。n=0 表示输入结束，你的程序不应当处理这一行。
+
+输出描述：
+对于每组测试数据，输出一行，表示最多可以喝的汽水瓶数。如果一瓶也喝不到，输出0。
+
+示例1
+输入：
+3
+10
+81
+0
+输出：
+1
+5
+40
+说明：
+样例 1 解释：用三个空瓶换一瓶汽水，剩一个空瓶无法继续交换
+样例 2 解释：用九个空瓶换三瓶汽水，剩四个空瓶再用三个空瓶换一瓶汽水，剩两个空瓶，向老板借一个空瓶再用三个空瓶换一瓶汽水喝完得一个空瓶还给老板  
+    </pre>
+    <script>
+        // 自测：简单一想，这不就等于x*1/3+x*1/9 ...,直到x*1/3^n小于3时，则无法继续兑换
+        // function getWord(Num){
+        //     let result = 0
+        //     for(let i = 1;i < Num/3;i++){
+        //         if(Num*Math.pow(1/3,i)  >= 0.99){
+        //             console.log(result)
+        //             console.log(Num*Math.pow(1/3,i),'111')
+        //             result += Num*Math.pow(1/3,i)
+        //         }
+        //     }
+        //     return result
+        // }
+        // console.log(getWord(10))
+        // 虽然上面这种方法乍一看是能解决问题，但是由于js运算精度的问题，导致我们运算时会出现不准的情况，如上就无法得出正确的答案
+        // 因此我们有如下方法：
+        function getWord(Num){
+            let count = 0
+            if(Num >= 3) {
+                count = Math.floor(Num/3)
+            }
+            Num = count + Num%3
+            while(Num >= 3) {
+                count += Math.floor(Num/3)
+                Num = Math.floor(Num/3) + Num%3
+            }
+            if(Num === 2) {
+                count++
+            }
+            return count
+        }
+        console.log(getWord(81))
+
+        // 使用华为机考可识别方法
+        // let line;
+        // while ((line = readline())) {
+        //     let count = 0;
+        //     let empty = Number(line);
+        //     if (empty >= 3) {
+        //         count = Math.floor(empty / 3);
+        //     }
+        //     empty = count + (empty % 3);
+        //     while (empty >= 3) {
+        //         count += Math.floor(empty / 3);
+        //         empty = Math.floor(empty / 3) + (empty % 3);
+        //     }
+        //     if (empty === 2) {
+        //         count++;
+        //     }
+        //     if (count > 0) {
+        //         console.log(count);
+        //     }
+        // }
+
+         /* 
+        * 分析：上面我们通过数学分析知道了该题就是就等比数列的和，因此我用计算机思维进行计算，但是事与愿违，因为js存在的精度问题，无法正确的展示对应的结果
+        *   因此只能自己计算好等比数列的和，及为输入值的1/2，但是该中方法不足以体现计算机的计算思维，因此有了如上的例子
+        */
+        // ===========网络参考答案========== 
+        // let line = "";
+        // while ((line = readline())) {
+        //     if (line != "0") {
+        //         console.log(parseInt(line / 2));
+        //     }
+        // }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定时器练习1</title>
+</head>
+<body>
+  <!-- 
+    写一个 mySetInterVal(fn, a, b),每次间隔 a,a+b,a+2b,...,a+nb 的时间，然后写一个 myClear，停止上面的 mySetInterVal
+   -->
+   <script>
+     function mySetInterVal(fn, a, b) {
+          this.a = a;
+          this.b = b;
+          this.time = 0;
+          this.handle = -1;
+          this.start = () => {
+              this.handle = setTimeout(() => {
+                  fn();
+                  this.time++;
+                  this.start();
+                  console.log( this.a + this.time * this.b);
+              }, this.a + this.time * this.b);
+          }
+
+          this.stop = () => {
+              clearTimeout(this.handle);
+              this.time = 0;
+          }
+      }
+
+      var a = new mySetInterVal(() => {console.log('123')},1000, 1000 );
+      a.start();
+      a.stop();
+
+
+    //   function mySetInterVal(fn,a,b){
+    //    var n = 0
+    //   let timer = setInterval(() =>{
+    //     n++
+    //     console.log(a + n*b)
+    //   },a + n*b)
+    //  }
+    //  mySetInterVal(console.log('fn'),1000,1000)
+
+    // 解析：这个题目我们很容易写成下面的内容，但是最终发现这里面其实有个坑的，那就是定时器里面的
+    // 时间a + n*b，这种写法看似没问题，但是我们修改n是在定时器里面，这里我们在定时器外面是无法获取到
+    // 定时器里面的值的，虽然我们修改的是同一个n。
+   </script>
+</body>
+</html>

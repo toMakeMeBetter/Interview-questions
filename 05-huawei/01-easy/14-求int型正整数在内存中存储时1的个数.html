@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>求int型正整数在内存中存储时1的个数</title>
+</head>
+<body>
+    <pre>
+      描述
+输入一个 int 型的正整数，计算出该 int 型数据在内存中存储时 1 的个数。
+
+数据范围：保证在 32 位整型数字范围内
+输入描述：
+ 输入一个整数（int类型）
+
+输出描述：
+ 这个数转换成2进制后，输出1的个数
+
+示例1
+输入：
+5
+输出：
+2
+示例2
+输入：
+0
+复制
+输出：
+0
+    </pre>
+    <script>
+      // 自测结果
+      function getWord(Num){
+        const arr = []
+        let res = 0
+        if(Num === 0){
+          return res
+        }
+        for(let i = 0 ;; i ++){
+          if (Num / 2 >= 1) {
+              arr[i] = Num % 2;
+              Num = parseInt(Num / 2);
+          } else {
+              arr[i] = 1;
+              break;
+          }
+        }
+        console.log(arr)
+        arr.map(val =>{
+          if(val === 1){
+            res ++
+          }
+        })
+        return res
+      }
+       console.log(getWord(7))
+
+      // 使用华为机考可识别方法
+      // const num = readline()
+      // function getWord(Num){
+      //   const arr = []
+      //   let res = 0
+      //   if(Num === 0){
+      //     return res
+      //   }
+      //   for(let i = 0 ;; i ++){
+      //     if (Num / 2 >= 1) {
+      //         arr[i] = Num % 2;
+      //         Num = parseInt(Num / 2);
+      //     } else {
+      //         arr[i] = 1;
+      //         break;
+      //     }
+      //   }
+      //   arr.map(val =>{
+      //     if(val === 1){
+      //       res ++
+      //     }
+      //   })
+      //   return res
+      // }
+      // console.log(getWord(num))
+      
+        /* 
+        * 分析：这个题用于考察10进制转2进制，因为我们对一个方法熟悉程度不高，导致不知道使用简单的方法，而是想着如何自己写方法来转化
+        * 通过网上资料，我们知道可以直接使用num.toString(2)将数字转成一个字符串，16或8转10进制我们可以使用parseInt(num,16或8)
+        */
+
+      // ===========网络参考答案========== 
+      // 参考答案1
+      // console.log(Number(readline()).toString(2).replace(/0/g,'').length)
+
+      // 参考答案2
+      // let line = readline();
+      // const transform = Number(line).toString(2);
+      // let count = 0;
+      // for (let i = 0; i < transform.length; i++) {
+      //   if (transform[i] == 1) {
+      //     count++;
+      //   }
+      // }
+      // console.log(count);
+    </script>
+</body>
+</html>
